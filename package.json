@@ -18,8 +18,11 @@
     "eslint-plugin-vue": "^2.0.1",
     "mint-ui": "^2.1.1",
     "vue": "^2.1.10",
+    "vue-loader": "^11.1.0",
     "vue-resource": "^1.2.0",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.2.0",
+    "vux": "^2.1.0-rc.51",
+    "vux-loader": "^1.0.39"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

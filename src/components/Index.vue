@@ -1,9 +1,10 @@
 <template>
   <div class="index">
-    <div v-for="c in categories" class="scroll-view-item">
-      <router-link v-bind:to="{ path: '/#symptom', query: { category_name: c.category_name }}">
-      </router-link>
-      {{c.category_name}}
+    <div v-for="c in categories" >
+      <div class="scroll-view-item" v-on:click="go($event)" data-url="/#symptom" :data-category="c.category_name">
+        {{c.category_name}}
+      </div>
+
     </div>
   </div>
 </template>
@@ -32,8 +33,10 @@ export default {
           console.log(response)
         })
     },
-    go (url) {
-      console.log(this)
+    go (event) {
+      console.log(event)
+      const url = event.target.dataset.url + '?category_name=' + event.target.dataset.category
+      console.log(url)
       go(url)
     }
   }

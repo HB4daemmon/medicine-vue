@@ -1,28 +1,33 @@
 <template>
   <div id="symptom">
-    <div v-for="s in symptoms">
-      <div class="scroll-view-item">{{s._id}}</div>
-      <div class="scroll-view-item"><mt-switch v-model="aaa" class="switch" @change="change($event)" :data-category="s._id"></mt-switch ></div>
-    </div>
+    <group title="症状">
+      <div v-for="s in symptoms">
+        <x-switch :title="s._id" @on-change="change($event,s._id)"></x-switch>
+      </div>
+    </group>
+
     <div>
-      <mt-button type="default" @click.native="go($event)" style="width: 100%;">诊断</mt-button>
-    </div>
-    <div>
-      {{1}}
+      <x-button plain type="primary" @click.native="go($event)" data-url="/#medicine" :data-symptoms="symptom">诊断</x-button>
     </div>
   </div>
 
 </template>
 
 <script>
-//  import { go } from '../global/utils'
+  import { XSwitch, Group, XButton } from 'vux'
+  import { go } from '../global/utils'
   export default {
     name: 'symptom',
+    components: {
+      XSwitch,
+      Group,
+      XButton
+    },
     data () {
       return {
         categoryName: '',
         symptoms: [],
-        aaa: false
+        selectedSymptoms: []
       }
     },
     mounted () {
@@ -43,12 +48,20 @@
       },
       go (event) {
         console.log(event)
-        console.log(this.form)
-//        go(event)
+        const url = event.target.dataset.url + '?symptoms=' + event.target.dataset.symptoms
+        go(url)
       },
-      change (e) {
-        console.log(e)
-        console.log(e.preventDefault())
+      change (e, f) {
+        if (e) {
+          this.selectedSymptoms.push(f)
+        } else {
+          this.selectedSymptoms = this.selectedSymptoms.filter(t => t !== f)
+        }
+      }
+    },
+    computed: {
+      symptom: function () {
+        return JSON.stringify(this.selectedSymptoms)
       }
     }
   }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from 'components/Index'
 import Symptom from 'components/Symptom'
-import Twocloumn from 'components/TwoColumn'
+import Medicine from 'components/Medicine'
 
 Vue.use(Router)
 
@@ -19,9 +19,9 @@ export default new Router({
       component: Symptom
     },
     {
-      path: '/t',
-      name: 'Twocloumn',
-      component: Twocloumn
+      path: '/medicine',
+      name: 'Medicine',
+      component: Medicine
     }
   ]
 })

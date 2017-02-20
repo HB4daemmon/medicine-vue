@@ -1,21 +1,29 @@
 <template>
   <div id="app">
-    <mt-header fixed :title="title" class="header">
-      <router-link to="/" slot="left">
-        <mt-button icon="back">返回</mt-button>
-      </router-link>
-      <mt-button icon="more" slot="right"></mt-button>
-    </mt-header>
-    <router-view></router-view>
+    <mheader :title="title" :showMore="showMore" :showBack="showBack" ></mheader>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
+// import { XHeader, Actionsheet } from 'vux'
+import Mheader from 'components/Mheader.vue'
 export default {
   name: 'app',
+  components: {
+    Mheader
+  },
   data () {
     return {
-      title: '问药'
+      title: '问药',
+      showBack: true,
+      showMore: true,
+      menus: {
+        menu1: 'Take Photo',
+        menu2: 'Choose from photos'
+      }
     }
   }
 }
@@ -28,7 +36,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+body{
+  margin:0px;
 }
 
 .header{

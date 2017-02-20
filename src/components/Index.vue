@@ -34,9 +34,7 @@ export default {
         })
     },
     go (event) {
-      console.log(event)
       const url = event.target.dataset.url + '?category_name=' + event.target.dataset.category
-      console.log(url)
       go(url)
     }
   }
